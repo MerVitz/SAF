@@ -16,5 +16,5 @@ Student Accommodation Finder is a Java-based application designed to help studen
 1. **Clone the repository**
 
    ```bash
-   git clone [repository URL]
+   git clone [[repository URL]](https://github.com/MerVitz/SAF.git)https://github.com/MerVitz/SAF.git
 
