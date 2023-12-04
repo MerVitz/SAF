@@ -369,58 +369,81 @@ public class MainAppWindow extends javax.swing.JFrame {
 
     private void Plots_In_NyawitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Plots_In_NyawitaActionPerformed
     String selectedItem = (String) Plots_In_Nyawita.getSelectedItem();
-    Kwa_Mama_Eugene detailsFrameKME = new Kwa_Mama_Eugene(selectedItem);
-    Orange_House detailsFrameOH = new Orange_House(selectedItem);
-   // Nyawita_Center detailsFrameNC = new Nyawita_Center(selectedItem);
-   // Kwa_Mama_Ben detailsFrameKMB = new Kwa_Mama_Ben(selectedItem);
-    detailsFrameKME.setVisible(true);
-    detailsFrameOH.setVisible(true);
-   // detailsFrameNC.setVisible(true);
-   // detailsFrameKMB.setVisible(true);
+    switch (selectedItem) {
+        case "Kwa Mama Eugene":
+            Kwa_Mama_Eugene detailsFrameKME = new Kwa_Mama_Eugene("Kwa Mama Eugene");
+            detailsFrameKME.setVisible(true);
+            break;
+        case "Orange House":
+            Orange_House detailsFrameOH = new Orange_House("Orange House");
+            detailsFrameOH.setVisible(true);
+            break;
+        //case "Jota":
+        //    Jota detailsFrameJota = new Jota("Jota");
+        //    detailsFrameJota.setVisible(true);
+        //    break;
+        // Add cases for other plots as needed
+    }
     }//GEN-LAST:event_Plots_In_NyawitaActionPerformed
 
     private void Plots_In_MarketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Plots_In_MarketActionPerformed
-        //  A JFrame shows details for each plot
     String selectedItem = (String) Plots_In_Market.getSelectedItem();
-    //Carolina_Herein detailsFrameKME = new Carolina_Herein(selectedItem);
-    The_Space detailsFrameTS = new The_Space(selectedItem);
-   // Nyawita_Center detailsFrameNC = new Nyawita_Center(selectedItem);
-   // Kwa_Mama_Ben detailsFrameKMB = new Kwa_Mama_Ben(selectedItem);
-    detailsFrameTS.setVisible(true);
-   // detailsFrameOH.setVisible(true);
-   // detailsFrameNC.setVisible(true);
-   // detailsFrameKMB.setVisible(true);
+    switch (selectedItem) {
+        case "The Space":
+            The_Space detailsFrameTS = new The_Space("The Space");
+            detailsFrameTS.setVisible(true);
+            break;
+        //case "GV":
+        //    GV detailsFrameGV = new GV("GV");
+        //    detailsFrameGV.setVisible(true);
+        //    break;
+        //case "Jota":
+        //    Jota detailsFrameJota = new Jota("Jota");
+        //    detailsFrameJota.setVisible(true);
+        //    break;
+        // Add cases for other plots as needed
+    }
     }//GEN-LAST:event_Plots_In_MarketActionPerformed
 
     private void Plots_In_VikamItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Plots_In_VikamItemStateChanged
     }//GEN-LAST:event_Plots_In_VikamItemStateChanged
 
     private void Plots_In_VikamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Plots_In_VikamActionPerformed
-        //  A JFrame shows details for each plot
-    String selectedItem = (String) Plots_In_Vikam.getSelectedItem();
-    //Carolina_Herein detailsFrameKME = new Carolina_Herein(selectedItem);
-    //GV detailsFrameGV = new GV(selectedItem);
-   Vikam detailsFrameVK = new Vikam(selectedItem);
-   // Kwa_Mama_Ben detailsFrameKMB = new Kwa_Mama_Ben(selectedItem);
-    
-    //detailsFrameGV.setVisible(true);
-    detailsFrameVK.setVisible(true);
-   // detailsFrameNC.setVisible(true);
-   // detailsFrameKMB.setVisible(true);
+        String selectedItem = (String) Plots_In_Vikam.getSelectedItem();
+    switch (selectedItem) {
+        case "Vikam":
+            Vikam detailsFrameVK = new Vikam("Vikam");
+            detailsFrameVK.setVisible(true);
+            break;
+        //case "GV":
+        //    GV detailsFrameGV = new GV("GV");
+        //    detailsFrameGV.setVisible(true);
+        //    break;
+        //case "Jota":
+        //    Jota detailsFrameJota = new Jota("Jota");
+        //    detailsFrameJota.setVisible(true);
+        //    break;
+        // Add cases for other plots as needed
+    }
     }//GEN-LAST:event_Plots_In_VikamActionPerformed
 
     private void Plots_In_MabungoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Plots_In_MabungoActionPerformed
-        //  A JFrame shows details for each plot
-   String selectedItem = (String) Plots_In_Mabungo.getSelectedItem();
-    //Carolina_Herein detailsFrameKME = new Carolina_Herein(selectedItem);
-    //GV detailsFrameGV = new GV(selectedItem);
-   Action_Center detailsFrameAC = new Action_Center(selectedItem);
-   // Kwa_Mama_Ben detailsFrameKMB = new Kwa_Mama_Ben(selectedItem);
-    
-    //detailsFrameGV.setVisible(true);
-    detailsFrameAC.setVisible(true);
-   // detailsFrameNC.setVisible(true);
-   // detailsFrameKMB.setVisible(true);
+    String selectedItem = (String) Plots_In_Mabungo.getSelectedItem();
+    switch (selectedItem) {
+        case "Action Center":
+            Action_Center detailsFrameAC = new Action_Center("Action Center");
+            detailsFrameAC.setVisible(true);
+            break;
+        //case "GV":
+        //    GV detailsFrameGV = new GV("GV");
+        //    detailsFrameGV.setVisible(true);
+        //    break;
+        //case "Jota":
+        //    Jota detailsFrameJota = new Jota("Jota");
+        //    detailsFrameJota.setVisible(true);
+        //    break;
+        // Add cases for other plots as needed
+    }
     }//GEN-LAST:event_Plots_In_MabungoActionPerformed
 
     /**

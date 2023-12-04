@@ -39,26 +39,36 @@ jButton3.addActionListener(new java.awt.event.ActionListener() {
 });
             
     }
-private void loadRoomData() {
+
+ private void loadRoomData() {
     DefaultTableModel model = new DefaultTableModel(new String[]{"House Number", "Price", "Status"}, 0);
 
     try (Connection conn = Database.connect();
          Statement stmt = conn.createStatement();
-         ResultSet rs = stmt.executeQuery("SELECT Room_Id, Price, Status, plotName, locality FROM room WHERE plotName = 'Vikam' AND locality = 'Around Vikam'")) {
+         ResultSet rs = stmt.executeQuery("SELECT Room_Id, Price, Status FROM room WHERE plotName = 'Vikam' AND locality = 'Around Vikam'")) {
+
+        boolean hasData = false;
 
         while (rs.next()) {
             String roomNumber = rs.getString("Room_Id");
             String price = rs.getString("Price");
             String status = rs.getString("Status");
+
             model.addRow(new Object[]{roomNumber, price, status});
+            hasData = true;
         }
-        jTable1.setModel(model); // Replace 'jTable1' with the actual name of your JTable
+
+        jTable1.setModel(model); 
+
+        if (!hasData) {
+            JOptionPane.showMessageDialog(this, "There are no rooms in Vikam");
+        }
 
     } catch (SQLException e) {
         e.printStackTrace();
-        // Handle exceptions
+        JOptionPane.showMessageDialog(this, "Error loading room data: " + e.getMessage());
     }
-}    
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
