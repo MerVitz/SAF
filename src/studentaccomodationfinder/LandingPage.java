@@ -17,6 +17,7 @@ public class LandingPage extends javax.swing.JFrame {
      */
     public LandingPage() {
         initComponents();
+         jTextField1.setText("Search by Locality, Price, or Plot Name...");        
    
     sign_in.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +135,6 @@ public class LandingPage extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setText("Search house...");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);

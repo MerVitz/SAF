@@ -4,18 +4,74 @@
  * and open the template in the editor.
  */
 package studentaccomodationfinder;
+import java.awt.*;
+import java.sql.*;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 /**
  *
  * @author user
  */
+
+
 public class MainAppWindow extends javax.swing.JFrame {
 
     /**
      * Creates new form MainAppWindow
      */
+private final JTable jTable1;
+private final DefaultTableModel tableModel;    
+private final JPanel dynamicContentPanel;
+private final JLabel messageLabel;
+
+    private static MainAppWindow instance = null;
+
+    public static MainAppWindow getInstance() {
+        if (instance == null) {
+            instance = new MainAppWindow();
+        }
+        return instance;
+    }
+
+
     public MainAppWindow() {
         initComponents();
+    search_data.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            search_dataActionPerformed(evt);
+        }
+    });
+    
+    messageLabel = new JLabel("", SwingConstants.CENTER);
+    tableModel = new DefaultTableModel(new String[]{"House_Id", "Price", "Status", "plotName", "Locality"}, 0);
+    jTable1 = new JTable(tableModel);    
+    JScrollPane scrollPane = new JScrollPane(jTable1);
+    dynamicContentPanel = new JPanel(new BorderLayout());
+    dynamicContentPanel.add(scrollPane, BorderLayout.CENTER);
+    getContentPane().add(dynamicContentPanel, BorderLayout.CENTER);
+    pack();
+    setVisible(true);
+
+    // Assuming your search field is named jTextField1
+    jTextField1.addFocusListener(new FocusListener() {
+    String placeholderText = "Search House by Location, Price or Plotname..";
+    @Override
+    public void focusGained(FocusEvent e) {
+        if (jTextField1.getText().equals(placeholderText)) {
+            jTextField1.setText("");
+        }
+    }
+    @Override
+    public void focusLost(FocusEvent e) {
+        if (jTextField1.getText().isEmpty()) {
+            jTextField1.setText(placeholderText);
+        }
+    }
+});
+
     }
 
     /**
@@ -40,7 +96,7 @@ public class MainAppWindow extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        contentPanel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         Plots_In_Nyawita = new javax.swing.JComboBox();
@@ -97,8 +153,12 @@ public class MainAppWindow extends javax.swing.JFrame {
         jLabel2.setText("Famous Locations ...");
 
         search_data.setText("SEARCH");
+        search_data.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_dataActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setText("Search house...");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -116,11 +176,11 @@ public class MainAppWindow extends javax.swing.JFrame {
                 .addComponent(search_data)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 274, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(25, 25, 25))
         );
@@ -302,29 +362,29 @@ public class MainAppWindow extends javax.swing.JFrame {
                 .addComponent(Plots_In_Mabungo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout contentPanelLayout = new javax.swing.GroupLayout(contentPanel);
+        contentPanel.setLayout(contentPanelLayout);
+        contentPanelLayout.setHorizontalGroup(
+            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(around_market, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        contentPanelLayout.setVerticalGroup(
+            contentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(47, 47, 47)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(41, 41, 41)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(44, 44, 44)
                 .addComponent(around_market, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -337,7 +397,7 @@ public class MainAppWindow extends javax.swing.JFrame {
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(footer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -346,9 +406,9 @@ public class MainAppWindow extends javax.swing.JFrame {
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(contentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(footer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -365,6 +425,7 @@ public class MainAppWindow extends javax.swing.JFrame {
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
+      
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void Plots_In_NyawitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Plots_In_NyawitaActionPerformed
@@ -446,6 +507,89 @@ public class MainAppWindow extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_Plots_In_MabungoActionPerformed
 
+    private void search_dataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_dataActionPerformed
+System.out.println("search_dataActionPerformed is called");    
+        // TODO add your handling code here:
+    String searchText = jTextField1.getText().trim();
+
+    if (!searchText.isEmpty()) {
+        searchRooms(searchText);
+        
+        getContentPane().remove(contentPanel);
+        JScrollPane scrollPane = new JScrollPane(jTable1);
+        getContentPane().add(scrollPane, BorderLayout.CENTER);      
+    }  
+    }//GEN-LAST:event_search_dataActionPerformed
+
+private void searchRooms(String searchText) {
+    tableModel.setRowCount(0);
+    String query = "SELECT Room_Id, Price, Status, plotName, Locality FROM room WHERE Locality LIKE ? OR plotName LIKE ? OR Price LIKE ?";
+
+    try (Connection conn = Database.connect();
+         PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+        pstmt.setString(1, "%" + searchText + "%");
+        pstmt.setString(2, "%" + searchText + "%");
+        pstmt.setString(3, "%" + searchText + "%");
+
+        ResultSet rs = pstmt.executeQuery();
+
+        boolean hasData = false;
+        while (rs.next()) {
+            hasData = true;
+            Object[] row = {
+                rs.getString("Room_Id"),
+                rs.getString("Price"),
+                rs.getString("Status"),
+                rs.getString("plotName"),
+                rs.getString("Locality")
+            };
+            tableModel.addRow(row);
+        }
+
+        if (!hasData) {
+            messageLabel.setText("No data found matching your search criteria.");
+            updateLayoutForMessage();
+        } else {
+            updateLayoutForTable();
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace(); // Handle exceptions
+    }
+    System.out.println("Number of rows fetched: " + tableModel.getRowCount());
+}
+
+    
+    
+private void updateLayoutForMessage() {
+    System.out.println("Updating layout for message");
+    // Remove the table panel and add the message label
+    getContentPane().remove(dynamicContentPanel);
+    getContentPane().add(messageLabel, BorderLayout.CENTER);
+    revalidateAndRepaint();
+}
+
+private void updateLayoutForTable() {
+    System.out.println("Updating layout for table");
+    // Remove the message label and add the table panel
+    getContentPane().remove(messageLabel);
+    getContentPane().add(dynamicContentPanel, BorderLayout.CENTER);
+    revalidateAndRepaint();
+}
+
+private void revalidateAndRepaint() {
+    // Revalidate and repaint the container to reflect the changes
+    getContentPane().revalidate();
+    getContentPane().repaint();
+    pack();
+}
+
+
+
+
+
+    
     /**
      * @param args the command line arguments
      */
@@ -476,7 +620,8 @@ public class MainAppWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainAppWindow().setVisible(true);
+    System.out.println("This is main");                
+                MainAppWindow.getInstance().setVisible(true);
             }
         });
     }
@@ -488,6 +633,7 @@ public class MainAppWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox Plots_In_Vikam;
     private javax.swing.JButton Sign_Out;
     private javax.swing.JPanel around_market;
+    private javax.swing.JPanel contentPanel;
     private javax.swing.JPanel footer;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jLabel1;
@@ -501,7 +647,6 @@ public class MainAppWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
